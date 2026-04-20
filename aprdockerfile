@@ -1,5 +1,5 @@
 FROM python:3.13.13-alpine AS build 
-ADD ./ec2
+ADD . /ec2
 WORKDIR /ec2
 RUN pip3 install --prefix=/devops -r requirments.txt
 
