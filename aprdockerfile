@@ -1,0 +1,13 @@
+FROM python:3.13.13-alpine AS build 
+ADD ./ec2
+WORKDIR /ec2
+RUN apt install pip3
+    pip3 install -r requirments.txt
+
+FROM python:3.13.13-alpine AS runtime
+LABEL proejct ="python"
+LABEL author ="Dileepmallekedi"
+COPY --from=build /ec2 /app
+WORKDIR /app
+EXPOSE 50001    
+CMD ["python3", "app.py"]
